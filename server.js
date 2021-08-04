@@ -41,13 +41,12 @@ mongoose.connection.on('connected', () => {
 // // })
 
 const routes = require('./routes/api')
-
+app.use("/", express.static(path.join(__dirname, "/dist/client")));
 //will make json so can be accessed via server js req.body
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-var distDir = __dirname + "/dist/";
- app.use(express.static(distDir));
+
 // app.use(cors())
 app.use(morgan('tiny'));
 app.use('/api',routes);
