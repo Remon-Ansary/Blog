@@ -1,0 +1,4 @@
+npm init -y
+npx create-react-app  appname
+npm install mongoose express axios morgan concurrently -S
+npm run dev
