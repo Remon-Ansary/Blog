@@ -1,4 +1,3 @@
-A MERN stack blog application.Where user can login create post and see post.
-All data are uploaded in Mongodb.Firebase is used for authentication
+A MERN stack blog application.Where users can log in create posts and see posts. All data are uploaded to MongoDB. Firebase is used for authentication
 
 To run type: npm run dev
