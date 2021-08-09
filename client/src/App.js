@@ -1,16 +1,47 @@
-import React from "react";
+import React,{useEffect} from "react";
 import axios from "axios";
 import firebase from "./firebase";
 import "./App.css";
 import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
+import Login from "./auth/Login"
+import Welcome from "./auth/Welcome"
 
 class App extends React.Component {
+
+
+
   handleFile = (files) => {
     this.setState({
       files: files,
+    
     });
   };
+
+  componentDidMount() {
+    this.authListener();
+
+  }
+  authListener(){
+    firebase.auth().onAuthStateChange((user)=>{
+      if(user){
+        this.setState({user})
+      }
+      else{
+        this.setState({user : null})
+      }
+  })
+  }
+  // constructor(props)
+  // {
+  //   super(props);
+  //   this.state={
+  //     user : {}
+  //   }
+  // }
+
+ 
+
   handleSave = () => {
     let bucketName = "images";
     let file = this.state.files[0];
@@ -37,7 +68,9 @@ class App extends React.Component {
     body: "",
     files: null,
     posts: [],
+    user:{}
   };
+ 
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -91,7 +124,10 @@ class App extends React.Component {
   };
 
   displayBlogPost = (posts) => {
-    if (!posts.length) return null;
+ 
+    
+       
+     if (!posts.length) return null;
     return posts.map((post, index) => (
       <section className="blogpost" id="blogpost">
         <div>
@@ -151,11 +187,15 @@ class App extends React.Component {
       </section>
     ));
   };
+  // auth
+ 
+
 
   render() {
-    console.log("state: ", this.state);
+    // console.log("state: ", this.state);
     return (
       <div>
+        {this.state.user ? (<Login/>):(<Welcome/>) }
         <Navbar />
         <div className="container">
           {/* ////// form section/////////// */}
