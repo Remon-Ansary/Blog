@@ -14,7 +14,7 @@ class App extends React.Component {
   handleFile = (files) => {
     this.setState({
       files: files,
-    
+     user:{}
     });
   };
 
@@ -32,13 +32,7 @@ class App extends React.Component {
       }
   })
   }
-  // constructor(props)
-  // {
-  //   super(props);
-  //   this.state={
-  //     user : {}
-  //   }
-  // }
+  
 
  
 
