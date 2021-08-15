@@ -2,6 +2,7 @@ import React,{useEffect} from "react";
 import axios from "axios";
 import firebase from "./firebase";
 import "./App.css";
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
 import Login from "./auth/Login"
@@ -118,10 +119,9 @@ class App extends React.Component {
   };
 
   displayBlogPost = (posts) => {
- 
     
        
-     if (!posts.length) return null;
+    if (!posts.length) return null;
     return posts.map((post, index) => (
       <section className="blogpost" id="blogpost">
         <div>
@@ -189,6 +189,13 @@ class App extends React.Component {
     // console.log("state: ", this.state);
     return (
       <div>
+         <Router>
+          <switch>
+         
+            <Route path="/login" exact component={Login} />
+            
+          </switch>
+          </Router>
         {this.state.user ? (<Login/>):(<Welcome/>) }
         <Navbar />
         <div className="container">
